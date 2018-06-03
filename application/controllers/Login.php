@@ -7,6 +7,16 @@ class Login extends CI_Controller {
 	{
 		$this->load->view('login/index');
 	}
+	function logout() {
+		//session_start();
+		session_destroy();
+		$this->session->unset_userdata('logged_in');
+		//session_destroy(); //destruye la sesión, o sea el arreglo de sesión logged_in
+		redirect('login', 'refresh');
+	}
+	function recover() {
+		$this->load->view('login/recover', null, FALSE);
+	}
 
 }
 
