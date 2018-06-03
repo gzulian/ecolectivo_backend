@@ -1,0 +1,32 @@
+extends ../../_layout
+
+block active
+    - sidebar_active = 'animations.html'
+
+block content
+    //- this mixin builds card with a button
+    //- to trigger a specific animation on a target element
+    mixin anim-card-manual(animation)
+        // START card
+        .card.card-default(id='card-anim-'+animation)
+            .card-header
+                = animation
+            .card-body
+                // Animation trigger
+                a(href='javascript:void(0)', data-animate="", data-target='#card-anim-'+animation, data-play=animation)
+                    em.fa.fa-play.fa-2x
+        // END card
+
+
+    .content-heading
+        div
+            | Animations
+            small animo is a powerful little tool that makes managing CSS animations extremely easy.
+    - var animations = ['bounce','flash','pulse','rubberBand','shake','swing','tada','wobble','bounceIn','bounceInDown','bounceInLeft','bounceInRight','bounceInUp','bounceOut','bounceOutDown','bounceOutLeft','bounceOutRight','bounceOutUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft','fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','fadeOut','fadeOutDown','fadeOutDownBig','fadeOutLeft','fadeOutLeftBig','fadeOutRight','fadeOutRightBig','fadeOutUp','fadeOutUpBig','flip','flipInX','flipInY','flipOutX','flipOutY','lightSpeedIn','lightSpeedOut','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight','rotateOut','rotateOutDownLeft','rotateOutDownRight','rotateOutUpLeft','rotateOutUpRight','hinge','rollIn','rollOut','zoomIn','zoomInDown','zoomInLeft','zoomInRight','zoomInUp','zoomOut','zoomOutDown','zoomOutLeft','zoomOutRight','zoomOutUp']
+
+    // START row
+    .row
+        each val in animations
+            .col-sm-6.col-lg-3.col-xl-2
+                +anim-card-manual(val)
+    // END row
